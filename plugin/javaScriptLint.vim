@@ -11,6 +11,11 @@
 "               http://www.javascriptlint.com/docs/index.htm
 " Last Modified: May 5, 2009
 
+if exists('loaded_jslint')
+  finish
+endif
+let loaded_jslint = 1
+
 if !exists("jslint_command")
   let jslint_command = 'jsl'
 endif
