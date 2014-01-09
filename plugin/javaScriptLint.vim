@@ -15,8 +15,12 @@ if !exists("jslint_command")
   let jslint_command = 'jsl'
 endif
 
+if !exists("jslint_command_conf")
+  let jslint_command_conf = '-conf ~/.jsl.conf '
+endif
+
 if !exists("jslint_command_options")
-  let jslint_command_options = '-conf ~/.sbin/jsl.conf -nofilelisting -nocontext -nosummary -nologo -process'
+  let jslint_command_options = '-nofilelisting -nocontext -nosummary -nologo -process'
 endif
 
 if !exists("jslint_highlight_color")
@@ -37,7 +41,7 @@ function JavascriptLint()
 
   " run javascript lint on the current file
   let current_file = shellescape(expand('%:p'))
-  let cmd_output = system(g:jslint_command . ' ' . g:jslint_command_options . ' ' . current_file)
+  let cmd_output = system(g:jslint_command . ' ' . g:jslint_command_conf . ' ' . g:jslint_command_options . ' ' . current_file)
 
   " if some warnings were found, we process them
   if strlen(cmd_output) > 0
